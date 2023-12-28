@@ -59,7 +59,7 @@ jobs:
 
        - name: Terraform Apply
          id: apple
-         if: github.ref == 'refs/head/main' && github.event_name == 'push'
+         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
          run: terraform apply -auto-approve -input=false -parallelism=1 planfile
 
 
@@ -78,7 +78,7 @@ jobs:
        - name: Install Ingress controller
          if: steps.apple.outcome == 'success' && steps.getconfig.outcome == 'success'
          run: kubectl apply -f https://raw.guthubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.3/deploy/static/provider/aws/deploy.yaml
-         
+
 
 
            
